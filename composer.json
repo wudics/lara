@@ -1,0 +1,7 @@
+{
+    "require": {
+        "smarty/smarty": "~3.1",
+        "catfan/medoo": "1.5.7",
+        "phpmailer/phpmailer": "^6.0"
+    }
+}
