@@ -1,16 +1,16 @@
-# easyweb
+# lara
 
 #### 项目介绍
-easyweb是一个简单易用的php框架，实现了路由、容错、过滤器等处理，集成composer代码生态，可快速创建中小型网站应用。
+lara是一个简单易用的php框架，实现了路由、容错、过滤器等处理，集成composer代码生态，可快速创建中小型网站应用。
 
 #### 软件架构
-easyweb采用单一入口解决方案，所有非静态文件均指向Public目录下的index.php文件，由该文件加载启动。
+lara采用单一入口解决方案，所有非静态文件均指向Public目录下的index.php文件，由该文件加载启动。
 
 Core目录的Controller.php、Model.php和View.php文件，分别定义了控制器、模型和视图的基类，实现了过滤器功能，由子类继承。另外Error.php和Router.php分别用于处理错误和路由，由入口文件index.php加载。
 
 App目录下有Config.php文件，由入口文件index.php加载，以及Controllers、Models和Views目录，分别用于存放控制器、模型和视图的代码。
 
-easyweb以目录结构作为命名空间规则，对类进行自动加载。
+lara以目录结构作为命名空间规则，对类进行自动加载。
 
 #### 安装教程
 
@@ -19,6 +19,14 @@ easyweb以目录结构作为命名空间规则，对类进行自动加载。
 ```
 RewriteEngine On
 RewriteBase /Public
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.*)$ index.php?$1 [QSA,L]
+```
+放到二级目录可修改RewriteBase为/lara/Public
+```
+RewriteEngine On
+RewriteBase /lara/Public
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteRule ^(.*)$ index.php?$1 [QSA,L]
