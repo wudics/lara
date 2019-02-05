@@ -9,7 +9,7 @@
 /* 系统常量 */
 define('DS', DIRECTORY_SEPARATOR);  // 系统分隔符，Linux为 / ，Windows为 \
 define('ROOT', dirname(__DIR__) . DS);  // 物理系统文件根目录，如：C:\wwwroot\myweb\
-define('WWWROOT', str_replace('\\', '', dirname(dirname($_SERVER['SCRIPT_NAME']))) . '/');  // 网站根目录，如 /
+define('WWWROOT', str_replace(DS, '', dirname(dirname($_SERVER['SCRIPT_NAME']))) . '/');  // 网站根目录，如 /
 
 /* 配置时区 */
 date_default_timezone_set('Asia/Shanghai');
