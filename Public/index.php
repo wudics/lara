@@ -9,7 +9,16 @@
 /* 系统常量 */
 define('DS', DIRECTORY_SEPARATOR);  // 系统分隔符，Linux为 / ，Windows为 \
 define('ROOT', dirname(__DIR__) . DS);  // 物理系统文件根目录，如：C:\wwwroot\myweb\
-define('WWWROOT', str_replace(DS, '', dirname(dirname($_SERVER['SCRIPT_NAME']))) . '/');  // 网站根目录，如 /
+
+/*
+* define('WWWROOT', dirname(dirname($_SERVER['SCRIPT_NAME'])));
+* 当WWWROOT在子目录时，WWWROOT为/myweb/subfolder或者/myweb
+* 当WWWROOT在根目录时，WWWROOT在Windows下为\，在Linux下为/
+* 在末尾加上'/'后可能有/myweb/subfolder/、/myweb/、\/或者//
+* 需要把\/和//这两种情况均替换为/
+* 最终得到'/myweb/subfolder/'、'/myweb/'或者'/'
+*/
+define('WWWROOT', str_replace('\\/', '/', str_replace('//', '/', dirname(dirname($_SERVER['SCRIPT_NAME'])) . '/')));	// 网站根目录
 
 /* 配置时区 */
 date_default_timezone_set('Asia/Shanghai');
